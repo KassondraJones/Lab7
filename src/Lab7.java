@@ -1,7 +1,8 @@
+
 /*
  * Kassondra Jones
- * Not finished -- this is as far as I got sadly
  * January 30, 2018
+ * Lab 7
  * 
  */
 
@@ -13,6 +14,7 @@ public class Lab7 {
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
+		String userResponse = "y";
 
 		System.out.println("Welcome to our Java class.\nWhich student would you like to learn more about?");
 
@@ -27,61 +29,51 @@ public class Lab7 {
 				"Pizza", "Tacos", "Pasta", "Salad", "BBQ", "Pizza", "Tacos", "Pasta", "Salad", "BBQ", "Pizza", "Tacos",
 				"Pasta", "Salad", "BBQ" };
 
-		try {
-			System.out.println("Enter a number 1-20:  ");
-			int userNum = scan.nextInt();
+		do {
+			try {
+				// For loop to display student numbers and names
+				for (int i = 0; i < studentNum.length; i++) {
+					System.out.print(studentNum[i] + "\t");
+					System.out.println(studentName[i] + "\t");
+				}
+				System.out.println(" ");
+				System.out.println("Enter the corresponding number 1-20:  ");
+				int userNum = scan.nextInt();
 
-			if (userNum >= 1 && userNum <= 20) {
-				System.out.println(userNum);
-				
-				//I DONT KNOW HOW TO MAKE THESE INTO METHODS... SOS... PLEASE SEND HELP
-				for (int i = 0; i < studentNum.length; i++)
-					System.out.println("Student " + studentNum[i] + " is " + studentName[i]
-							+ ".  What would you like to know about " + studentName[i] + "?");
+				// If statement to validate the number enter is within the given range
+				if (userNum >= 1 && userNum <= 20) {
+					int i = userNum - 1;
 
-				for (int i = 0; i < studentNum.length; i++)
+					System.out.println("Student " + studentNum[i] + " is " + studentName[i] + ".  " + studentName[i]
+							+ "'s hometown is " + studentHometown[i] + " and " + studentName[i] + "'s favorite food is "
+							+ studentFood[i] + ".");
+					scan.nextLine();
 
-					System.out.println(studentName[i] + "'s hometown is " + studentHometown[i] + ".");
-				
-				for (int i = 0; i < studentNum.length; i++)
+				} else {
+					// Response if the number entered is out of bounds and doesn't correspond to a
+					// student
+					System.out.println("That student does not exist.  Please try again.");
+					scan.nextLine();
+				}
 
-					System.out.println(studentName[i] + "'s favorite food is " + studentFood[i] + ".");
-
-			} else {
-				System.out.println("That student does not exist.  Please try again.");
+			} catch (InputMismatchException exception) {
+				// This catch appears if a user does not enter a valid response i.e. a letter
+				// instead of a number
+				System.out.println("This is not a valid number.  Please try again.");
+				scan.nextLine();
 			}
-		} catch (InputMismatchException exception) {
-			System.out.println("This is not a valid number.  Please try again.");
-		}
 
+			System.out.println(" ");
+			System.out.println("Would you like to learn about a different student?  (y/n):");
+			userResponse = scan.nextLine();
 
-	 scan.close();
+		} while (userResponse.equalsIgnoreCase("y"));
 
-	 System.out.println("Thanks!");
+		System.out.println(" ");
+		System.out.println("Thanks for your time!\nI hope you learned a lot about our class!");
 
-	 scan.close();
+		scan.close();
 
+	}
 
 }
-	
-	public static String getStudentName (int userNum) {
-
-		
-	return " ";
-	}
-	
-	public static String getStudentHometown (String studentName) {
-
-		
-	return " ";
-	}
-	
-	public static String getStudentFood (String studentName) {
-		
-	return " ";
-	}
-	
-	
-	
-}
-
